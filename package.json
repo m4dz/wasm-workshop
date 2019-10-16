@@ -2,7 +2,7 @@
     "name": "wasm-workshop",
     "version": "0.1.0",
     "scripts": {
-      "build": "wasm-pack build lib --target web",
+      "build": "wasm-pack build lib --target web -- --features wee_alloc",
       "live": "live-server --no-browser --port=8000"
     },
     "author": "m4dz <code@m4dz.net>",
