@@ -1,3 +1,5 @@
+import init, { mine } from './lib/pkg/wasm_workshop.js'
+
 const NODES = [0, 1, 2]
 
 /**
@@ -15,6 +17,12 @@ const _loadNode = (idx) => fetch(`data/node_${idx}.json`)
 const load = (nodes, store) => Promise
   .all(nodes.map(_loadNode))
   .then(values => store._state = values)
+
+const resetState = ({_state}) => _state.forEach((node, idx) => {
+  node.id = idx.toString()
+  node.nonce = '0'
+  node.parent = idx > 0 ? (idx - 1).toString() : '-'
+})
 
 /**
  * UI THREAD RENDERING
@@ -63,6 +71,10 @@ function initRender (nodes, store) {
   initRender.done = true
 }
 
+function renderResult (p, r) {
+  return `${((p) / 1000).toFixed(3)}s / ${r} rounds<br>(~${Math.round(p / r)}ms per round)`
+}
+
 function render (nodes, store) {
   initRender.apply(this, arguments)
   store._state
@@ -76,4 +88,16 @@ function render (nodes, store) {
  */
 document.addEventListener('DOMContentLoaded', () => {
   load(NODES, document).then(() => render(NODES, document))
+})
+
+init().then(() => {
+  let $btn = document.querySelector('button')
+  let $res = document.querySelector('.res')
+  let $select = document.querySelector('select')
+
+  $btn.addEventListener('click', () => {
+    resetState(document)
+    const res = mine(document._state, +$select.value)
+    $res.innerHTML = renderResult(res[0], res[1])
+  })
 })
