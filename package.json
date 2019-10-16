@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "scripts": {
       "build": "wasm-pack build lib --target web",
+      "test": "cargo test lib && wasm-pack test lib --headless",
       "live": "live-server --no-browser --port=8000"
     },
     "author": "m4dz <code@m4dz.net>",
