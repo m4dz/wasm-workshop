@@ -1,0 +1,12 @@
+{
+    "name": "wasm-workshop",
+    "version": "0.1.0",
+    "scripts": {
+      "live": "live-server --no-browser --port=8000"
+    },
+    "author": "m4dz <code@m4dz.net>",
+    "license": "AGPL-3.0",
+    "devDependencies": {
+      "live-server": "^1.2.1"
+    }
+  }
