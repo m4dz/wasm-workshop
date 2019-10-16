@@ -76,6 +76,11 @@ impl fmt::Display for Record {
     }
 }
 
+#[wasm_bindgen(module = "/bind.js")]
+extern "C" {
+    fn updateState(state: JsValue);
+}
+
 #[wasm_bindgen]
 pub struct Stats(pub f64, pub usize);
 
@@ -103,5 +108,6 @@ pub fn mine(nodes: &JsValue, limit: usize) -> Stats {
         parent = node.id.clone();
     }
 
+    updateState(JsValue::from_serde(&nodes).unwrap());
     Stats(performance.now() - t, rounds)
 }
