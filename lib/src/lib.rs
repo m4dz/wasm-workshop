@@ -12,6 +12,9 @@ extern {
 }
 
 #[wasm_bindgen]
-pub fn greet(name: &str) {
+pub fn greet(mut name: &str) {
+    if name.trim().is_empty() {
+        name = "World"
+    }
     alert(&format!("Hello, {}!", name));
 }
