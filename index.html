@@ -3,5 +3,35 @@
 <head>
     <meta charset="utf-8">
     <title>WASM Workshop</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="module" src="index.js"></script>
 </head>
+<body>
+    <template id="node">
+        <li class="node">
+            <p class="parent_id"></p>
+            <h2></h2>
+            <p class="nonce"></p>
+            <ul></ul>
+        </li>
+    </template>
+
+    <ul class="nodes"></ul>
+
+    <ul class="controls">
+        <li>
+            <select>
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </li>
+        <li>
+            <button>Mining w/ WASM</button>
+            <p class="res"></p>
+        </li>
+    </ul>
+</body>
 </html>
